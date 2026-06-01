@@ -26,3 +26,5 @@ move();
 setInterval(() => {
   move();
 }, 1000);
+
+export { move, img, allCell };
