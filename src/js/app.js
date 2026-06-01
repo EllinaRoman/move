@@ -1,11 +1,28 @@
-// TODO: write code here
+import goblin from "../img/goblin.png";
 
-// comment this to pass build
-const unusedVariable = "variable";
+const grid = document.querySelector(".grid");
 
-// for demonstration purpose only
-export default function demo(value) {
-  return `Demo: ${value}`;
+for (let i = 0; i < 16; i++) {
+  const cell = document.createElement("div");
+  cell.classList.add("cell");
+  grid.append(cell);
 }
 
-console.log("app.js included");
+const img = document.createElement("img");
+img.src = goblin;
+const allCell = grid.querySelectorAll(".cell");
+
+const move = () => {
+  const randomIndex = Math.floor(Math.random() * 16);
+  if (Array.from(allCell).indexOf(img.parentNode) === randomIndex) {
+    move();
+    return;
+  }
+
+  allCell[randomIndex].append(img);
+};
+move();
+
+setInterval(() => {
+  move();
+}, 1000);
