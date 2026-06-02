@@ -1,8 +1,10 @@
 import goblin from "../img/goblin.png";
 
 const grid = document.querySelector(".grid");
+const cellsCount = 16;
+const delay = 1000;
 
-for (let i = 0; i < 16; i++) {
+for (let i = 0; i < cellsCount; i++) {
   const cell = document.createElement("div");
   cell.classList.add("cell");
   grid.append(cell);
@@ -13,16 +15,14 @@ img.src = goblin;
 const allCell = grid.querySelectorAll(".cell");
 
 const move = () => {
-  const randomIndex = Math.floor(Math.random() * 16);
-  if (Array.from(allCell).indexOf(img.parentNode) === randomIndex) {
-    move();
-    return;
-  }
-
+  let randomIndex;
+  do {
+    randomIndex = Math.floor(Math.random() * cellsCount);
+  } while (Array.from(allCell).indexOf(img.parentNode) === randomIndex);
   allCell[randomIndex].append(img);
 };
 move();
 
-setInterval(() => {
+const intervalId = setInterval(() => {
   move();
-}, 1000);
+}, delay);
