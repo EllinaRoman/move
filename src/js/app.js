@@ -26,3 +26,6 @@ move();
 const intervalId = setInterval(() => {
   move();
 }, delay);
+
+// при необходимости остановки:
+// clearInterval(intervalId);
